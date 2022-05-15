@@ -5,11 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rock Paper Scissors</title>
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="scoreboard">
+        <h1 class="title">Rock Paper Scissors</h1>
+        <h4 class="subtitle">Press Play to Start</h4>
         <div class="you player">You
             <div id='playerScore' class="scoreBox"></div>
         </div>
@@ -19,8 +21,9 @@
     </div>
 
     <div class="messageboard">
-        <p class="mainMsg">You Win/Lose</p>
+        <p id = 'test' class="mainMsg">You Win/Lose</p>
         <p class="secondaryMsg">Rock Beats Scissors</p>
+        <button class="playbtn">Play</button>
     </div>
 
     <div class="options">

@@ -1,59 +1,65 @@
+//Initialization:
+let mainMsg = document.querySelector(".mainMsg")
+let secondaryMsg = document.querySelector(".secondaryMsg")
+let playbut = document.querySelector('.playbtn')
 
-playGame(5);
+let human = document.querySelector(".you")
+let computer = document.querySelector(".computer")
 
-function playGame(rounds){
-    for(let i=0; i<rounds; i++){
-        let PlayerSelect = prompt("Choose rock[R], paper[P] or scissors[S]").toUpperCase();
-        let ComputerSelect = computerPlay();
-        alert(playRound(PlayerSelect, ComputerSelect));
+let title = document.querySelector(".title")
+let subtitle = document.querySelector(".subtitle")
+let scoreBoard = document.querySelector(".scoreboard")
+
+let choices = document.querySelectorAll(".choice")
+
+//Toggles:
+function toggleMSG(){
+    if(mainMsg.style.display==='none'){ //turn Message ON, Playbtn Off
+        mainMsg.style.display = 'block';
+        secondaryMsg.style.display = 'block'
+        playbut.style.display = 'none'
     }
-}
-function playRound(playerSelection, computerSelection){
-    let p = playerSelection
-    let c = computerSelection;
-    let str = "You chose:"+p[0] + ", Computer chose:"+c[0];
-    console.log(str);
-    if(playerSelection[0]=="R"){
-        if(computerSelection[0]=="R"){
-            return "Draw!";
-        }
-        else if(computerSelection[0]=="P"){
-            return "You lose! Paper beats Rock";
-        }
-        else if(computerSelection[0]=="S"){
-            return "You win! Rock beats Paper"
-        }
-    }
-    else if(playerSelection[0]=="P"){
-        if(computerSelection[0]=="R"){
-            return "You win! Paper beats Rock";
-        }
-        else if(computerSelection[0]=="P"){
-            return "Draw!";
-        }
-        else if(computerSelection[0]=="S"){
-            return "You lose! Scissors beats Paper";
-        }
-    }
-    else if(playerSelection[0]=="S"){
-        if(computerSelection[0]=="R"){
-            return "You lose! Rock beats Scissors"
-        }
-        else if(computerSelection[0]=="P"){
-            return "You win! Scissors beats paper";
-        }
-        else if(computerSelection[0]=="S"){
-            return "Draw";
-        }
+    else {  //turn Message OFF, playbtn On
+        mainMsg.style.display = 'none';
+        secondaryMsg.style.display = 'none'
+        playbut.style.display = 'inline-block'
     }
 }
 
-function computerPlay(){
-    compChoice = rand(3);
-    if(compChoice===1) return "Rock"
-    else if(compChoice===2) return "Paper"
-    else return "Scissors";
+function toggleScore(){
+    if(human.style.display==='none'){   //turn Score ON, Title OFF
+        human.style.display = 'flex';
+        computer.style.display = 'flex'
+        title.style.display = 'none';
+        subtitle.style.display = 'none';
+        scoreBoard.style.display = 'flex'
+    }
+    else {  //turn Score OFF, title ON
+        human.style.display = 'none'; 
+        computer.style.display = 'none'
+        title.style.display = 'block';
+        subtitle.style.display = 'block';
+        scoreBoard.style.display = 'block'
+    }
 }
-function rand(upto){
-    return Math.floor(Math.random() * upto) + 1;
+
+//FUNCTIONS:
+function startGame(){
+    toggleScore();
+    toggleMSG();
+
+    mainMsg.textContent = 'Choose a Weapon'
+    secondaryMsg.textContent = 'first to 5, wins the game'
 }
+
+function checkWinner(){
+    console.log(this.id)
+}
+
+//MAIN
+    toggleMSG();
+    toggleScore();
+
+    playbut.addEventListener('click', startGame)
+
+    choices.forEach(choice => choice.addEventListener('click', checkWinner))
