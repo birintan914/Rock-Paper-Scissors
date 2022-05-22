@@ -8,6 +8,7 @@ let title = document.querySelector(".title")
 let subtitle = document.querySelector(".subtitle")
 let scoreBoard = document.querySelector(".scoreboard")
 let choices = document.querySelectorAll(".choice")
+let playAgain = document.getElementById('again')
 
 const yourScorebox = document.getElementById('playerScore')
 const computerScorebox = document.getElementById('computerScore');;
@@ -45,11 +46,36 @@ function toggleScore(){
     }
 }
 
+function toggleOptions(setting){
+    let options = document.querySelectorAll('.choice')
+
+    if(setting==1){ //Choices
+        options.forEach(choice => {
+            choice.style.display = 'none'
+            choice.style.display = 'inline-block'
+        })
+        playAgain.style.display = 'none'
+    }
+    else if(setting==2){ //Play Again button
+        options.forEach(choice => {
+            choice.style.display = 'none'
+        })
+        playAgain.style.display = 'inline-block'
+    }
+}
+
 //FUNCTIONS:
+function resetScore(urScore,pcScore){
+    yourScore = urScore;
+    computerScore = pcScore;
+    yourScorebox.textContent = urScore;
+    computerScorebox.textContent = pcScore;
+}
 function startGame(){
+    resetScore(0,0);
+
     toggleScore();
     toggleMSG();
-    yourScore.textContent = 0;
 
     mainMsg.textContent = 'Choose a Weapon'
     secondaryMsg.textContent = 'first to 5, wins the game'
@@ -64,11 +90,17 @@ function rand(upto){
     return Math.floor(Math.random() * upto) + 1;
 }
 function restartGame(){
-    mainMsg.textContent = 'Game Over!'
+    mainMsg.textContent = 'Game Over'
     secondaryMsg.textContent = (yourScore > computerScore) ? 'You Won!' : 'You Lost!'
 
-    //Restart Score
-    //Remove Options and add play again button
+    toggleOptions(2)
+    playAgain.addEventListener('click', ()=> {
+        console.log('test')
+        resetScore(0,0)
+        toggleOptions(1)
+        mainMsg.textContent = 'Choose a Weapon'
+        secondaryMsg.textContent = 'first to 5, wins the game'
+    })
 }
 function playRound(){
     let playerMove = this.id;
@@ -105,6 +137,7 @@ function playRound(){
 //MAIN
     toggleMSG();
     toggleScore();
+    toggleOptions(1);
 
     playbut.addEventListener('click', startGame)
 

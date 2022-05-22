@@ -108,3 +108,23 @@ h4 {
     transform: scale(1.15);
     box-shadow: 0 0 10px black;
 }
+
+#again{
+    display: inline-block;
+    background-color: #6b5b95;
+    color: white;
+    text-shadow: 0 0 4px black;
+    border: 3px solid black;
+    font-size: 2rem;
+    font-weight: 700;
+    padding: 20px 30px;
+    border-radius: 15%;
+    box-shadow: 0 0 3.5px black;
+    transition: all 0.07s;
+}
+#again:hover{
+    transform: scale(1.2);
+    background-color: #6b5b95;
+    color: white;
+    text-shadow: 0 0 4px black;
+}
